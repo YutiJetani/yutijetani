@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Yuti Jetani's portfolio showcasing product and jewelry design projects." />
   <title>Yuti Jetani Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
-
   <style>
     body {
       margin: 0;
@@ -23,8 +20,9 @@
       justify-content: center;
       gap: 30px;
       border-bottom: 1px solid #ddd;
-      position: sticky;
+      position: fixed;
       top: 0;
+      width: 100%;
       z-index: 1000;
     }
 
@@ -33,54 +31,41 @@
       color: #000;
       font-weight: bold;
       transition: color 0.3s;
+      cursor: pointer;
     }
 
     nav a:hover {
       color: #a0522d;
     }
 
-    header,
-    section {
-      padding: 60px 40px;
+    .section {
+      display: none;
+      padding: 100px 40px 40px;
       text-align: center;
     }
 
-    h1,
-    h2,
-    h3 {
-      margin: 20px 0;
+    .section.active {
+      display: block;
     }
 
-    .hero-img,
-    .project-img,
-    .bio-img,
-    .connect-img {
+    .hero-img, .project-img, .bio-img, .connect-img {
       max-width: 100%;
       height: auto;
       border-radius: 8px;
     }
 
-    .about-section,
-    .project-section,
-    .connect-section,
-    .intro-section {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      align-items: center;
-      gap: 40px;
-    }
-
     .text-block {
       max-width: 600px;
+      margin: 0 auto;
       text-align: left;
     }
 
     .contact-info {
       display: flex;
-      justify-content: space-evenly;
+      justify-content: center;
       flex-wrap: wrap;
-      padding-top: 30px;
+      gap: 40px;
+      margin-top: 30px;
     }
 
     .contact-info div {
@@ -88,46 +73,49 @@
     }
   </style>
 </head>
-
 <body>
 
   <nav>
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#creates">Creates</a>
-    <a href="#connect">Connect</a>
+    <a onclick="showSection('home')">Home</a>
+    <a onclick="showSection('about')">About</a>
+    <a onclick="showSection('projects')">Projects</a>
+    <a onclick="showSection('creates')">Creates</a>
+    <a onclick="showSection('connect')">Connect</a>
   </nav>
 
-  <header>
+  <!-- HOME -->
+  <div id="home" class="section active">
     <h2><em>Every piece of art I create holds a piece of me forever.</em></h2>
     <img src="5.png" alt="Welding Art" class="hero-img" />
-  </header>
+  </div>
 
- 
-      <h1 class="about-section" id="about"></h1>
-      
-   
+  <!-- ABOUT -->
+  <div id="about" class="section">
+    
     <img src="About%20her.png" alt="Yuti Jetani" class="bio-img" />
+  </div>
 
-
-  <section class="project-section" id="projects">
+  <!-- PROJECTS -->
+  <div id="projects" class="section">
     <h1>MY MOST RECENT PROJECT</h1>
     <h3>The Stooble</h3>
-    <p>A playful, all-in-one stool made to fit anywhere. Use it as a seat, side table, or extra storage; whatever you need. Separate the parts to create multiple stools or small tables. The arched cutouts make it easy to grab and move around. Compact, smart, and fun to use, Stooble works in every space.</p>
+    <p>A playful, all-in-one stool made to fit anywhere. Use it as a seat, side table, or extra storage...</p>
     <img src="Home.png" alt="The Stooble" class="project-img" />
     <h2>MORE PROJECTS</h2>
     <img src="Creations.png" alt="More Projects" class="project-img" />
-  </section>
+  </div>
 
-  <section class="intro-section" id="creates">
+  <!-- CREATES -->
+  <div id="creates" class="section">
     <div class="text-block">
       <h1>YUTI JETANI CREATES</h1>
       <p>I love to create pieces that give one a sense of belonging and confidence. My style involves traditional elements with futuristic aesthetics. I enjoy creating problem-solving designs.</p>
     </div>
     <img src="Creations.png" alt="Design Process" class="project-img" />
-  </section>
+  </div>
 
-  <section class="connect-section" id="connect">
+  <!-- CONNECT -->
+  <div id="connect" class="section">
     <h1>LET'S CONNECT</h1>
     <img src="Connect.png" alt="Street View with Flowers" class="connect-img" />
     <div class="contact-info">
@@ -144,8 +132,15 @@
         <p><em>yutijetaniyt@gmail.com</em></p>
       </div>
     </div>
-  </section>
+  </div>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      window.scrollTo(0, 0); // reset scroll to top
+    }
+  </script>
 
 </body>
-
 </html>
